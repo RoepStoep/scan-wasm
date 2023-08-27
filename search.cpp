@@ -843,7 +843,7 @@ Score Search_Local::search(const Node & node, Score alpha, Score beta, Depth dep
       Depth new_depth = Depth(local.depth * 40 / 100);
 
       Line new_pv;
-      Score sc = search(node, new_beta - Score(1), new_beta, new_depth, local.ply + Ply(1), false, move::None, new_pv);
+      Score sc = search(node, new_beta - Score(1), new_beta, new_depth, local.ply, false, local.skip_move, new_pv);
 
       if (sc >= new_beta) {
 
@@ -1013,7 +1013,7 @@ Score Search_Local::qs(const Node & node, Score alpha, Score beta, Depth depth, 
       // threat position?
 
       if (depth == 0 && pos::is_threat(node)) {
-         return search(node, alpha, beta, Depth(1), ply + Ply(1), false, move::None, pv); // one-ply search
+         return search(node, alpha, beta, Depth(1), ply, false, move::None, pv); // one-ply search
       }
 
       // stand pat

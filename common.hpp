@@ -24,11 +24,11 @@ const int Move_Index_Size {1 << 12};
 const int Stage_Size {300};
 
 const std::string Engine_Name    {"Scan"};
-const std::string Engine_Version {"3.1"};
+const std::string Engine_Version {"3.1b"};
 
 // types
 
-enum Square : int;
+enum Square : int {};
 
 enum Inc : int {
    I1 = 6, J1 = 7,
@@ -48,14 +48,14 @@ enum Piece_Side : int {
    Empty,
 };
 
-enum class Key  : uint64;
-enum class Move : uint64;
+enum class Key  : uint64 {};
+enum class Move : uint64 {};
 
 enum Move_Index : int { Move_Index_None = 0 };
 
-enum Depth : int;
-enum Ply   : int;
-enum Score : int;
+enum Depth : int {};
+enum Ply   : int {};
+enum Score : int {};
 
 class Bit {
 
