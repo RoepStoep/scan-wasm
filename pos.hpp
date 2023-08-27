@@ -65,6 +65,8 @@ public:
    Square wolf  (Side sd) const { return square_make(m_wolf[sd]); }
    int    count (Side sd) const { return m_count[sd]; }
 
+   void set_wolf (Side side, Square square, int count);
+
 private:
 
    Pos (Bit man, Bit king, Bit white, Bit black, Bit all, Side turn);
@@ -128,6 +130,7 @@ inline int    stage (const Pos & pos) { return Stage_Size - tempo(pos); }
 inline double phase (const Pos & pos) { return double(stage(pos)) / double(Stage_Size); }
 
 void disp (const Pos & pos);
+void wolf_from_hub(const std::string & s, Pos & pos);
 
 } // namespace pos
 

@@ -14,6 +14,7 @@
 #include "move.hpp"
 #include "pos.hpp"
 #include "score.hpp"
+#include "util.hpp"
 #include "var.hpp"
 
 // functions
@@ -106,6 +107,12 @@ Pos Pos::succ(Move mv) const {
    }
 
    return pos;
+}
+
+void Pos::set_wolf(Side side, Square square, int count) {
+   assert(count <= 3);
+   m_wolf[side] = square;
+   m_count[side] = count;
 }
 
 bool operator==(const Pos & p0, const Pos & p1) { // for repetition detection
@@ -391,6 +398,34 @@ void disp(const Pos & pos) {
 
    std::cout << '\n';
    std::cout << std::endl;
+}
+
+void wolf_from_hub(const std::string & s, Pos & pos) {
+
+   Scanner_Number scan(s);
+   std::string token;
+
+   Side side;
+
+   while (!scan.eos()) {
+
+      token = scan.get_token();
+      if (token == "W") {
+         side = White;
+      } else {
+         side = Black;
+      }
+
+      token = scan.get_token();
+      Square square = square_from_string(token);
+
+      token = scan.get_token();
+
+      token = scan.get_token();
+      int count = std::stoi(token);
+
+      pos.set_wolf(side, square, count);
+   }
 }
 
 } // namespace pos
