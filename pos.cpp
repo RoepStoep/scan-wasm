@@ -412,8 +412,10 @@ void wolf_from_hub(const std::string & s, Pos & pos) {
       token = scan.get_token();
       if (token == "W") {
          side = White;
-      } else {
+      } else if (token == "B") {
          side = Black;
+      } else {
+         continue;
       }
 
       token = scan.get_token();
